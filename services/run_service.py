@@ -27,13 +27,13 @@ def run_pipeline(market : str):
         homeless_2 = homeless_properties[1]
     
         scrape_date = date.today().strftime("%Y-%m-%d")
-        
+        normalized_dict = []
         for item in onmap_properties:
-            normalized_dict = (normalize_listing(item,scrape_date,market))
+            normalized_dict.append(normalize_listing(item,scrape_date,market))
         for item in homeless_1:
-            normalized_dict = (normalize_listing(item,scrape_date,market))
+            normalized_dict.append(normalize_listing(item,scrape_date,market))
         for item in homeless_2:
-            normalized_dict = (normalize_listing(item,scrape_date,market))
+            normalized_dict.append(normalize_listing(item,scrape_date,market))
         con = get_connection()
         init_db(con)
         for row in normalized_dict:

@@ -46,7 +46,6 @@ def sha1_hash(*parts: str) -> str:
     return hashlib.sha1(joined.encode("utf-8")).hexdigest()
 
 def normalize_listing(raw: dict, scrape_date: str, market) -> dict:
-    print(raw)
     source = raw.get("source")
     
     out = {

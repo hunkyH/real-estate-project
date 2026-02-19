@@ -15,11 +15,10 @@ def init_db(conn) -> None:
       area_sqm REAL,
       price_ils INTEGER,
       date_updated TEXT,
-      first_seen TEXT NOT NULL,
-      last_seen TEXT NOT NULL,
       is_active INTEGER NOT NULL,
       raw_json TEXT
     )
     """)
-    conn.execute("CREATE INDEX IF NOT EXISTS idx_listings_market_last_seen ON listings(market, last_seen)")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_listings_market ON listings(market)")
+
     conn.commit()
