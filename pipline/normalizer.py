@@ -23,6 +23,11 @@ def parse_rooms(v) -> float | None:
     except ValueError:
         return None
 
+def parse_size(v) -> int | None:
+    if not v:
+        return
+    return int(v)
+
 def parse_date_ddmmyyyy(v) -> str | None:
     if not v:
         return None
@@ -83,6 +88,7 @@ def normalize_listing(raw: dict, scrape_date: str, market) -> dict:
         out["city"] = normalize_city(raw.get("city"),market)
         out["neighborhood"] = raw.get("neighborhood")
         out["price_ils"] = parse_price_ils(raw.get("price"))
+        out["area_sqm"] = parse_size(raw.get("size"))
         out["street"] = raw.get("street")
         out["rooms"] = parse_rooms(raw.get("rooms"))
         out["bathrooms"] = parse_rooms(raw.get("bathrooms"))
